@@ -1,0 +1,19 @@
+services:
+  sdk:
+    container_name: identixia-document-liveness
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: identixia/document-liveness:local
+    platform: linux/amd64
+    privileged: true
+    shm_size: "2gb"
+    ports:
+      - "${PORT:-14107}:${PORT:-14107}"
+    # PORT/HOST/LICENSE come from ../.env (env_file).
+    env_file:
+      - ../.env
+    volumes:
+      - ../.env:/root/documentlivenesssdk/.env
+      - /etc/machine-id:/etc/machine-id:ro
+    restart: unless-stopped

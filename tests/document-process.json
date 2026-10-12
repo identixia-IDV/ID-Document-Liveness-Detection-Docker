@@ -1,0 +1,30 @@
+{
+  "identity": {
+    "class": "Passport",
+    "country": "UTO",
+    "score": 0.91
+  },
+  "readings": [
+    { "name": "familyName", "value": "DOE", "origin": "visual", "score": 0.97 },
+    { "name": "firstNames", "value": "JOHN", "origin": "visual", "score": 0.96 },
+    { "name": "docNumber", "value": "123456789", "origin": "zone", "score": 0.99 }
+  ],
+  "tests": [
+    { "name": "expiry", "group": "validity", "outcome": "pass" },
+    { "name": "focus", "group": "capture", "outcome": "pass", "score": 0.9 },
+    { "name": "foilCheck", "group": "authenticity", "page": 0, "outcome": "pass", "score": 0.88 }
+  ],
+  "images": [
+    {
+      "name": "face",
+      "page": 0,
+      "data": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
+    }
+  ],
+  "session": {
+    "jobId": "identixia_0123456789abcdef0123456789abcdef",
+    "code": 0,
+    "detail": "ready",
+    "at": "2026-09-14T00:55:12Z"
+  }
+}
