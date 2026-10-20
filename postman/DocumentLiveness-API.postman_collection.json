@@ -1,0 +1,156 @@
+{
+  "info": {
+    "_postman_id": "identixia-document-liveness-api-0001",
+    "name": "Identixia Document Liveness API",
+    "description": "Identixia Document Liveness API.\nbaseUrl: http://127.0.0.1:14107\nWindows and Docker share this API. Flow: Health \u2192 Activate \u2192 `/api/document/liveness` (JSON or form-data)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:14107"
+    },
+    {
+      "key": "licenseKey",
+      "value": ""
+    },
+    {
+      "key": "imageB64",
+      "value": ""
+    },
+    {
+      "key": "image2B64",
+      "value": ""
+    },
+    {
+      "key": "feature1",
+      "value": ""
+    },
+    {
+      "key": "feature2",
+      "value": ""
+    },
+    {
+      "key": "personId",
+      "value": "demo-1"
+    }
+  ],
+  "item": [
+    {
+      "name": "Control",
+      "item": [
+        {
+          "name": "GET /api/health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/health",
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /api/backend",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/backend",
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /api/machinecode",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/machinecode",
+            "description": "Send data.machinecode to Identixia for a license key."
+          }
+        },
+        {
+          "name": "GET /api/licenseStatus",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/licenseStatus",
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/activate",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/activate",
+            "description": "Writes LICENSE= into the server .env.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"license\": \"{{licenseKey}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Document",
+      "item": [
+        {
+          "name": "POST /api/document/liveness (JSON)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/document/liveness",
+            "description": "JSON images[] entries are {image, page_idx}. page_idx 0 is the front, 1 is the back. Form-data uploads the same pages as file parts named images.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"images\": [\n    { \"image\": \"{{imageB64}}\", \"page_idx\": 0 },\n    { \"image\": \"{{image2B64}}\", \"page_idx\": 1 }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /api/document/liveness (form-data)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/api/document/liveness",
+            "description": "JSON images[] entries are {image, page_idx}. page_idx 0 is the front, 1 is the back. Form-data uploads the same pages as file parts named images. multipart/form-data; upload files under the same field names as JSON.",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "images",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "images",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
